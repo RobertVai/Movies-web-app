@@ -1,0 +1,67 @@
+.section {
+  width: 100%;
+  min-width: 0;
+}
+
+.title {
+  color: white;
+  font-size: 32px;
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+
+.embla {
+  overflow: hidden;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  gap: 40px;
+}
+
+.slide {
+  position: relative;
+  flex: 0 0 470px;
+  height: 230px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.slide:active {
+  cursor: grabbing;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  color: white;
+  z-index: 2;
+}
+
+.meta {
+  font-size: 15px;
+  opacity: 0.75;
+  margin: 0 0 4px;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+}
