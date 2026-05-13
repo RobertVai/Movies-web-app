@@ -4,17 +4,13 @@ import { movies } from "../../data/movies";
 import { useSearchContext } from "../../context/SearchContext";
 import { useFilteredMovies } from "../../hooks/useFilteredMovies";
 const Home = () => {
-  const { search } = useSearchContext();
+  const trendingMovies = movies.filter((m) => m.isTrending);
 
-  const filteredMovies = useFilteredMovies(movies, search);
-
-  const trendingMovies = filteredMovies.filter((m) => m.isTrending);
-
-  const recommendedMovies = filteredMovies.filter((m) => !m.isTrending);
+  const recommendedMovies = movies.filter((m) => !m.isTrending);
   return (
     <div>
       <MovieRow movies={trendingMovies} />
-      <MovieGrid movies={recommendedMovies}/>
+      <MovieGrid movies={recommendedMovies} />
     </div>
   );
 };

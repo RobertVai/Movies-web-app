@@ -2,7 +2,8 @@ import useEmblaCarousel from "embla-carousel-react";
 import styles from "./MovieRow.module.css";
 import { movies } from "../../data/movies";
 import type { Movie } from "../../types/movie";
-
+import { useSearchContext } from "../../context/SearchContext";
+import { useFilteredMovies } from "../../hooks/useFilteredMovies";
 type MovieRowProps = {
   movies: Movie[];
 };
@@ -12,6 +13,8 @@ const MovieRow = ({ movies }: MovieRowProps) => {
     containScroll: "trimSnaps",
     dragFree: true,
   });
+  const { search } = useSearchContext();
+  const filteredMovies = useFilteredMovies(movies, search);
 
   return (
     <section className={styles.section}>
@@ -19,7 +22,7 @@ const MovieRow = ({ movies }: MovieRowProps) => {
 
       <div className={styles.embla} ref={emblaRef}>
         <div className={styles.container}>
-          {movies.map((m) => (
+          {filteredMovies.map((m) => (
             <div className={styles.slide} key={m.title}>
               <img
                 className={styles.image}
