@@ -1,9 +1,12 @@
 import MovieGrid from "../../components/MovieGrid/MovieGrid";
-import { movies } from "../../data/movies";
+import { useMovieContext } from "../../contexts/MovieContext";
 
 const Movies = () => {
+  const { movies } = useMovieContext();
   const categoryMovies = movies.filter((m) => m.category === "Movie");
-  return <MovieGrid movies={categoryMovies} />;
+
+  const title = "Movies";
+  return <MovieGrid movies={categoryMovies} title={title} />;
 };
 
 export default Movies;

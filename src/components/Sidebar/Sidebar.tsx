@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.css";
+import mainLogo from "../../assets/logo.svg";
 import iconNavBookmark from "../../assets/icon-nav-bookmark.svg";
 import iconNavHome from "../../assets/icon-nav-home.svg";
 import iconNavMovies from "../../assets/icon-nav-movies.svg";
@@ -8,24 +9,38 @@ import iconNavTVSeries from "../../assets/icon-nav-tv-series.svg";
 const Sidebar = () => {
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.logo}>🎬</div>
+      <div className={styles.logo}>
+        <img src={mainLogo} alt="Main-logo" />
+      </div>
 
       <nav className={styles.nav}>
-        <Link to="/" className={styles.active}>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? styles.active : "")}
+        >
           <img src={iconNavHome} alt="home" />
-        </Link>
+        </NavLink>
 
-        <Link to="/movies">
+        <NavLink
+          to="/movies"
+          className={({ isActive }) => (isActive ? styles.active : "")}
+        >
           <img src={iconNavMovies} alt="movies" />
-        </Link>
+        </NavLink>
 
-        <Link to="/tv-series">
+        <NavLink
+          to="/tv-series"
+          className={({ isActive }) => (isActive ? styles.active : "")}
+        >
           <img src={iconNavTVSeries} alt="tv series" />
-        </Link>
+        </NavLink>
 
-        <Link to="/archived">
+        <NavLink
+          to="/archived"
+          className={({ isActive }) => (isActive ? styles.active : "")}
+        >
           <img src={iconNavBookmark} alt="bookmarked" />
-        </Link>
+        </NavLink>
       </nav>
     </aside>
   );

@@ -2,7 +2,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import styles from "./MovieRow.module.css";
 import { movies } from "../../data/movies";
 import type { Movie } from "../../types/movie";
-import { useSearchContext } from "../../context/SearchContext";
+import { useSearchContext } from "../../contexts/SearchContext";
 import { useFilteredMovies } from "../../hooks/useFilteredMovies";
 type MovieRowProps = {
   movies: Movie[];

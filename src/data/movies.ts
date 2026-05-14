@@ -219,7 +219,7 @@ export const movies: Movie[] = [
     category: "TV Series",
     rating: "PG",
     isBookmarked: false,
-    isTrending: true,
+    isTrending: false,
   },
   {
     title: "Earth’s Untouched",

@@ -1,12 +1,19 @@
 import styles from "./SearchBar.module.css";
-import { useSearchContext } from "../../context/SearchContext";
 
+import { useSearchContext } from "../../contexts/SearchContext";
+import searchIcon from "../../assets/icon-search.svg";
 const SearchBar = () => {
   const { search, setSearch } = useSearchContext();
 
   return (
     <div className={styles.searchbar}>
-      <span className={styles.icon}>⌕</span>
+      <span className={styles.icon}>
+        <img
+          src={searchIcon}
+          alt="
+        Search"
+        />
+      </span>
 
       <input
         className={styles.input}

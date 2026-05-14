@@ -20,6 +20,10 @@
   margin-bottom: 36px;
 }
 
+.logo img {
+  max-width: 24px;
+}
+
 .nav {
   display: flex;
   flex-direction: column;
@@ -38,6 +42,22 @@
 .nav button:hover,
 .nav .active {
   color: #ffffff;
+}
+
+.nav a {
+  opacity: 0.5;
+}
+
+.nav a:hover {
+  opacity: 1;
+}
+
+.nav a.active {
+  opacity: 1;
+}
+
+.nav a.active img {
+  filter: brightness(0) invert(1);
 }
 
 .avatar {
