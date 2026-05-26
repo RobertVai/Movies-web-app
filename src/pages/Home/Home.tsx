@@ -1,20 +1,23 @@
+import { useEffect } from "react";
 import MovieGrid from "../../components/MovieGrid/MovieGrid";
 import MovieRow from "../../components/MovieRow/MovieRow";
 import { useMovieContext } from "../../contexts/MovieContext";
-import { useSearchContext } from "../../contexts/SearchContext";
-import { useFilteredMovies } from "../../hooks/useFilteredMovies";
+
 const Home = () => {
   const { movies } = useMovieContext();
-  const trendingMovies = movies.filter((m) => m.isTrending);
 
-  const recommendedMovies = movies.filter((m) => !m.isTrending);
+  const trendingMovies = movies.filter((movie) => movie.isTrending);
+  const recommendedMovies = movies.filter((movie) => !movie.isTrending);
 
-  const title = "Recommended for you";
+  useEffect(() => {
+    document.title = "Home | Entertainment App";
+  }, []);
+
   return (
-    <div>
+    <>
       <MovieRow movies={trendingMovies} />
-      <MovieGrid movies={recommendedMovies} title={title} />
-    </div>
+      <MovieGrid movies={recommendedMovies} title="Recommended for you" />
+    </>
   );
 };
 

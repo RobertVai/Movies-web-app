@@ -4,7 +4,7 @@
 }
 
 .title {
-  color: white;
+  color: #ffffff;
   font-size: 32px;
   font-weight: 300;
   margin-bottom: 24px;
@@ -24,33 +24,102 @@
   position: relative;
   flex: 0 0 470px;
   height: 230px;
+
   border-radius: 8px;
   overflow: hidden;
-  cursor: grab;
-}
 
-.slide:active {
-  cursor: grabbing;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+
+    pointer-events: none;
+  }
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+
+.bookmark {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  z-index: 3;
+
+  width: 32px;
+  height: 32px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(16, 20, 30, 0.5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  img {
+    width: 12px;
+    height: 14px;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+  }
 }
 
 .info {
   position: absolute;
   left: 24px;
   bottom: 24px;
-  color: white;
   z-index: 2;
+
+  color: #ffffff;
 }
 
 .meta {
-  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #ffffff;
   opacity: 0.75;
-  margin: 0 0 4px;
+
+  font-size: 15px;
+  font-weight: 300;
+
+  margin-bottom: 4px;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  img {
+    width: 12px;
+    height: 12px;
+    filter: brightness(0) invert(1);
+  }
 }
 
 .name {
@@ -59,9 +128,59 @@
   margin: 0;
 }
 
-.slide::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+@media (max-width: 768px) {
+  .title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .container {
+    gap: 16px;
+  }
+
+  .slide {
+    flex: 0 0 300px;
+    height: 170px;
+  }
+
+  .bookmark {
+    top: 12px;
+    right: 12px;
+  }
+
+  .info {
+    left: 16px;
+    bottom: 16px;
+  }
+
+  .meta {
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .name {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide {
+    flex: 0 0 260px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 360px) {
+  .slide {
+    flex-basis: 240px;
+    height: 140px;
+  }
+
+  .meta {
+    font-size: 11px;
+  }
+
+  .name {
+    font-size: 15px;
+  }
 }

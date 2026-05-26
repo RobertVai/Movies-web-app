@@ -18,9 +18,7 @@ type MovieGridProps = {
 
 const MovieGrid = ({ movies, title }: MovieGridProps) => {
   const { search } = useSearchContext();
-
   const filteredMovies = useFilteredMovies(movies, search);
-
   const { toggleBookmark } = useMovieContext();
 
   return (
@@ -28,49 +26,56 @@ const MovieGrid = ({ movies, title }: MovieGridProps) => {
       <h2 className={styles.title}>{title}</h2>
 
       <div className={styles["movies-grid"]}>
-        {filteredMovies.map((m) => (
-          <div className={styles.card} key={m.title}>
+        {filteredMovies.map((movie) => (
+          <article className={styles.card} key={movie.title}>
             <div className={styles["image-wrapper"]}>
               <img
                 className={styles.image}
-                src={m.thumbnail.regular.large}
-                alt={m.title}
+                src={movie.thumbnail.regular.large}
+                alt={movie.title}
               />
 
               <button
                 className={styles.bookmark}
-                onClick={() => toggleBookmark(m.title)}
+                type="button"
+                onClick={() => toggleBookmark(movie.title)}
+                aria-label={
+                  movie.isBookmarked
+                    ? `Remove ${movie.title} from bookmarks`
+                    : `Add ${movie.title} to bookmarks`
+                }
               >
                 <img
-                  src={m.isBookmarked ? iconBookmarkFull : iconBookmarkEmpty}
-                  alt="bookmark"
+                  src={
+                    movie.isBookmarked ? iconBookmarkFull : iconBookmarkEmpty
+                  }
+                  alt=""
+                  aria-hidden="true"
                 />
               </button>
             </div>
 
             <div className={styles["movie-info"]}>
-              <p>{m.year}</p>
-
+              <span>{movie.year}</span>
               <span>•</span>
 
-              <div className={styles.category}>
+              <span className={styles.category}>
                 <img
                   src={
-                    m.category === "Movie" ? iconCategoryMovie : iconCategoryTV
+                    movie.category === "Movie" ? iconCategoryMovie : iconCategoryTV
                   }
-                  alt={m.category}
+                  alt=""
+                  aria-hidden="true"
                 />
-
-                <p>{m.category}</p>
-              </div>
+                {movie.category}
+              </span>
 
               <span>•</span>
-
-              <p>{m.rating}</p>
+              <span>{movie.rating}</span>
             </div>
 
-            <h3 className={styles.name}>{m.title}</h3>
-          </div>
+            <h3 className={styles.name}>{movie.title}</h3>
+          </article>
         ))}
       </div>
     </section>

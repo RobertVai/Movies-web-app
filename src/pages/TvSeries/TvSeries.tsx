@@ -1,13 +1,19 @@
+import { useEffect } from "react";
 import MovieGrid from "../../components/MovieGrid/MovieGrid";
-import { movies } from "../../data/movies";
 import { useMovieContext } from "../../contexts/MovieContext";
 
 const TvSeries = () => {
   const { movies } = useMovieContext();
-  const tvSeriesMovies = movies.filter((m) => m.category === "TV Series");
 
-  const title = "TV Series";
-  return <MovieGrid movies={tvSeriesMovies} title={title} />;
+  const tvSeriesMovies = movies.filter(
+    (movie) => movie.category === "TV Series",
+  );
+
+  useEffect(() => {
+    document.title = "TV Series | Entertainment App";
+  }, []);
+
+  return <MovieGrid movies={tvSeriesMovies} title="TV Series" />;
 };
 
 export default TvSeries;
